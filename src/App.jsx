@@ -3,6 +3,7 @@ import Footer from './components/Footer'
 import Navbar from './components/Navbar'
 import Sidebar from './components/sidebar'
 import Products from './views/products'
+import Wishlist from './views/Wishlist'
 
 function App() {
 
@@ -12,6 +13,7 @@ function App() {
       <main>
         {/* <Sidebar/> */}
         <Products/>
+        <Wishlist/>
       </main>
       <Footer/>
     </div>
