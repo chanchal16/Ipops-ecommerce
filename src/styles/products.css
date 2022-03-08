@@ -1,0 +1,28 @@
+.product-list{
+    padding: 2rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 2rem 1rem;
+}
+.vc-image{
+    object-fit: contain;
+    height: 10rem;
+}
+.action-btns:hover{
+    background-color: transparent;
+}
+.btn{
+    background-color: var(--secondary);
+}
+.btn:hover{
+    background-color: var(--secondary-dark);
+}
+/* section */
+section{
+    width: 100%;
+}
+.sort-div{
+    padding: 1rem;
+}
