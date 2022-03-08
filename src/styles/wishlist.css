@@ -1,0 +1,12 @@
+.wishlist-container{
+    margin: 2.5rem;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.wishlisted{
+    color: var(--danger);
+}
+.close{
+    color: var(--basic);
+}
