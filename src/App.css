@@ -4,6 +4,7 @@
 @import './styles/products.css';
 @import './styles/footer.css';
 @import './styles/variables.css';
+@import './styles/wishlist.css';
 *,
 *:before,
 *:after {
