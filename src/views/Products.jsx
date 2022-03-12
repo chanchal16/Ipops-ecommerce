@@ -1,8 +1,11 @@
 import React from 'react';
 import Sidebar from '../components/sidebar';
+import { useWishlist } from '../contexts/WishlistContext';
 import { products } from '../store/products';
 
 export default function Products() {
+    const {wishlist,addToWishlist} = useWishlist()
+    console.log('wishlist',wishlist)
   return (
     <div className="main-container">
         <Sidebar/>
@@ -20,7 +23,7 @@ export default function Products() {
                     <div class="card-content">
                         <div class="content-title">
                             <h4>{product.name}</h4>
-                            <span class=" gray">
+                            <span class=" gray" onClick={()=>addToWishlist(product)}>
                                 <i class="far fa-heart "></i>
                             </span>
                         </div>
@@ -30,7 +33,9 @@ export default function Products() {
                                 </span> <span class="secondary">20% off</span></p>
                         </div>
                         <div class="action-btns">
-                            <button class="btn"><i class="fas fa-shopping-cart"></i> Add to cart</button>
+                            <button class="btn" >
+                                <i class="fas fa-shopping-cart"></i> Add to cart
+                            </button>
                         </div>
                     </div>
                 </div>
