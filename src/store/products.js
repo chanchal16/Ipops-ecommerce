@@ -6,7 +6,7 @@ const products = [
         type:'eye-glasses',
         price:799,
         img:'https://cdn.eyemyeye.com/shared/images/products/E20C4254/E20C4254-1-hd.jpg',
-        rating:4.0
+        rating:2.8
     },
     {
         id:2,
@@ -15,7 +15,7 @@ const products = [
         type:'eye-glasses',
         price:999,
         img:'https://cdn.eyemyeye.com/shared/images/products/E20A3743/E20A3743-1-hd.jpg',
-        rating:3.7
+        rating:2.7
     },
     {
         id:3,
