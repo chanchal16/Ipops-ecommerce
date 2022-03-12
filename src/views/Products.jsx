@@ -42,18 +42,22 @@ export default function Products() {
                         <img class="vc-image" 
                         src={product.img} 
                         alt="specs" loading="lazy" />
-                        <span class="text-badge">new</span>
+                        <span class="gray close ">
+                            <i class="far fa-heart fa-lg"></i>
+                        </span>
+                        {/* <span class="text-badge">new</span> */}
                     </div>
                     <div class="card-content">
                         <div class="content-title">
                             <h4>{product.name}</h4>
-                            <span class=" gray">
-                                <i class="far fa-heart "></i>
-                            </span>
+                            <div class="badge-rating">
+                                <span class="text-xs">{product.rating}</span>
+                                <span class="badge-star"><i class="fas fa-star fa-xs"></i></span>
+                            </div>  
                         </div>
                         <div class="desc">
                             <p class="desc-title">{product.type}</p>
-                            <p><strong> {product.price} </strong> <span class="strike-text gray">Rs.999
+                            <p><strong>₹{product.price} </strong> <span class="strike-text gray">Rs.999
                                 </span> <span class="secondary">20% off</span></p>
                         </div>
                         <div class="action-btns">
