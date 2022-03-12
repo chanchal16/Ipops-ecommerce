@@ -26,3 +26,15 @@ section{
 .sort-div{
     padding: 1rem;
 }
+.close{
+    color: var(--primary);
+}
+/* ratings */
+.badge-rating{
+    padding:  0 3px; 
+    display: block;
+}
+.badge-star .fa-xs{
+    font-size: 0.57rem ; 
+    margin-bottom: 5px;
+}
