@@ -13,10 +13,10 @@ const filterReducer = (state, action) => {
         return [...state].filter(item=>item.type == 'computer-glasses');
       case 'SUNGLASSES':
         return [...state].filter(item=>item.type == 'sun-glasses');
-      case "FAST_DELIVERY":
-        return [...state].filter((p) => p.fastDelivery && p);
+      case "RATINGSS":
+        return [...state].filter((item) =>item.rating >= action.payload);
       case "PRICE":
-        return [...state].filter((item) => item.price <= action.payload);
+        return [...state].filter((item) => item.price >= action.payload);
       default:
         return [...state];
     }
