@@ -6,48 +6,69 @@ export default function Sidebar() {
   return (
     <div>
          <aside>
-            <div class="sidebar">
-                <span class="h6 sidebar-heading">Filters</span>
-                <div class="filters">
-                    <p class="text-md">Price</p>
-                    <input type="range" min="800" max="2000" value={state.price} 
-                    class="--slider accent" id="myRange" 
-                    onChange={(e) => dispatch({ type: "PRICE", payload: e.target.value })} />
+            <div className="sidebar">
+                <span className="h6 sidebar-heading">Filters</span>
+                <div className="filters">
+                    <p className="text-md">Price</p>
+                    <div class="slider-container">
+                        <datalist id="tickmarks">
+                        <option value="700" label="500"></option>
+                        <option value="2000" label="1k"></option>
+                        <option value="3000" label="2k"></option>
+                        <option value="4000" label="3k"></option>
+                        </datalist>
+                        <input
+                        type="range"
+                        name=""
+                        className="--slider accent"
+                        step="500"
+                        min="700"
+                        max="3000"
+                        value={state.price}
+                        onChange={(e) =>
+                            dispatch({ type: "PRICE", payload: e.target.value })
+                        }
+                        
+                        />
+                    </div>
+                    {/*<input type="range" min="800" max="2000" value={state.price} 
+                    className="--slider accent" id="myRange" 
+                    onChange={(e) => dispatch({ type: "PRICE", payload: e.target.value })} />*/}
                 </div>
                 {/* ---categories-- */}
-                <div class="filters">
-                    <p class="text-md">Category</p>
-                    <label class="text-sm accent" for="checkbox">
+                <div className="filters">
+                    <p className="text-md">Category</p>
+                    <div className='category-div'>
+                    <label className="text-sm accent" for="checkbox">
                         <input type="checkbox" name="category" /> All </label> 
-                    <p class="text-sm accent">
+                    <label className="text-sm accent">
                         <input type="checkbox" name="category" value='eye-glasses' onClick={(e)=>dispatch({type:'EYEGLASSES'})}/>
-                         Eye-glasses </p> 
-                    <p class="text-sm accent">
+                         Eye-glasses </label> 
+                    <label className="text-sm accent">
                         <input type="checkbox" name="category" value='computer-glasses' onClick={(e)=>dispatch({type:'COMPUTERGLASSES'})} />
-                         Computer-glasses </p>
-                    <p class="text-sm accent">
+                         Computer-glasses </label>
+                    <label className="text-sm accent">
                         <input type="checkbox" name="category" value='sun-glasses' onClick={(e)=>dispatch({type:'SUNGLASSES'})} />
-                         Sunglasses </p>
+                         Sunglasses </label>
+                    </div>
                 </div>
                 {/* <!---ratings----> */}
-                <div class="filters">
-                    <p class="text-md">Ratings</p>
-                    <p class="text-sm accent" for="radio">
-                        <input type="radio" name="rating" />
-                         4<i class="fas fa-star fa-xs"></i> & above 
-                    </p> 
-                    <p class="text-sm accent" for="radio">
-                        <input type="radio" name="rating" />
-                         3<i class="fas fa-star fa-xs"></i> & above
-                    </p> 
-                    <p class="text-sm accent" for="radio">
-                        <input type="radio" name="rating" /> 
-                        2<i class="fas fa-star fa-xs"></i> & above 
-                    </p>
-                    <p class="text-sm accent" for="radio">
-                        <input type="radio" name="rating" /> 
-                        1<i class="fas fa-star fa-xs"></i> & above 
-                    </p>
+                <div className="filters">
+                    <p className="text-md">Ratings</p>
+                    <div className='rating-div'>
+                        <label className="text-sm accent" htmlFor="radio">
+                            <input type="radio" name="rating" value='4' onChange={(e)=>dispatch({type:'RATINGSS', payload:e.target.value})} />
+                            4<i className="fas fa-star fa-xs"></i> & above 
+                        </label> 
+                        <label className="text-sm accent" htmlFor="radio">
+                            <input type="radio" name="rating" value='3' onChange={(e)=>dispatch({type:'RATINGSS',payload:e.target.value})}/>
+                            3<i className="fas fa-star fa-xs"></i> & above
+                        </label> 
+                        <label className="text-sm accent" htmlFor="radio">
+                            <input type="radio" name="rating" value='2' onChange={(e)=>dispatch({type:'RATINGSS',payload:e.target.value})}/> 
+                            2<i className="fas fa-star fa-xs"></i> & above 
+                        </label>
+                    </div>
                 </div>
             </div>
         </aside>
