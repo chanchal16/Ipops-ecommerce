@@ -2,11 +2,11 @@ import React from 'react'
 import { useWishlist } from '../contexts/WishlistContext'
 
 export default function Wishlist() {
-    const {wishlist} = useWishlist()
+    const {state} = useWishlist()
   return (
     <div className='wishlist-container'>
         {
-            wishlist.length > 0 && wishlist.map(wishlistItem=>(
+            state.wishlist?.length > 0 && state.wishlist?.map(wishlistItem=>(
                 <div class="card">
                     <div class="card-media">
                         <img class="vc-image" 
