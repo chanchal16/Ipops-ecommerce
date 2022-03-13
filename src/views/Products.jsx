@@ -1,11 +1,27 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import Sidebar from '../components/sidebar';
 import { useWishlist } from '../contexts/WishlistContext';
 import { products } from '../store/products';
 
 export default function Products() {
-    const {wishlist,addToWishlist} = useWishlist()
-    console.log('wishlist',wishlist)
+    const {state,dispatch} = useWishlist()
+    const [isWishlisted,setIsWishlisted] = useState(false)
+    // console.log('wishlist',state)
+
+    useEffect(() => {
+        const found = state.wishlist?.find((ele) => ele.id === product.id);
+        setIsWishlisted(found)
+        
+    }, [])
+    
+    const addToWishlist = (product)=>{   
+        if(isWishlisted){
+            dispatch({type:'REMOVE_FROM_WISHLIST', payload:product})
+        }else{
+            dispatch({type:'ADD_TO_WISHLIST',payload:product})
+        }
+        setIsWishlisted(!isWishlisted)
+    }
   return (
     <div className="main-container">
         <Sidebar/>
@@ -13,28 +29,29 @@ export default function Products() {
             <div className='product-list'>
             {
             products.map(product=>(
-                <div class="card">
-                    <div class="card-media">
-                        <img class="vc-image" 
+                <div className="card">
+                    <div className="card-media">
+                        <img className="vc-image" 
                         src={product.img} 
                         alt="specs" loading="lazy" />
-                        <span class="text-badge">new</span>
+                        <span className="text-badge">new</span>
                     </div>
-                    <div class="card-content">
-                        <div class="content-title">
+                    <div className="card-content">
+                        <div className="content-title">
                             <h4>{product.name}</h4>
-                            <span class=" gray" onClick={()=>addToWishlist(product)}>
-                                <i class="far fa-heart "></i>
+                            <span className=" gray" onClick={()=>addToWishlist(product)}>
+                            {/* <i className="far fa-heart "></i> */}
+                                {isWishlisted ?<i className="fas fa-heart "></i>: <i className="far fa-heart "></i>} 
                             </span>
                         </div>
-                        <div class="desc">
-                            <p class="desc-title">Eyeglasses</p>
-                            <p><strong> {product.price} </strong> <span class="strike-text gray">Rs.999
-                                </span> <span class="secondary">20% off</span></p>
+                        <div className="desc">
+                            <p className="desc-title">Eyeglasses</p>
+                            <p><strong> {product.price} </strong> <span className="strike-text gray">Rs.999
+                                </span> <span className="secondary">20% off</span></p>
                         </div>
-                        <div class="action-btns">
-                            <button class="btn" >
-                                <i class="fas fa-shopping-cart"></i> Add to cart
+                        <div className="action-btns">
+                            <button className="btn" >
+                                <i className="fas fa-shopping-cart"></i> Add to cart
                             </button>
                         </div>
                     </div>
