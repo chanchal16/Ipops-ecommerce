@@ -1,22 +1,28 @@
-import React,{useState,createContext,useContext} from 'react'
+import React,{useState,createContext,useContext,useReducer} from 'react'
+import { WishlistReducer } from '../reducers/WIshlistReducer';
 
 const wishlistContext = createContext()
 
  function WishlistContextProvider({children}) {
-    const [wishlist,setWishlist] = useState([])
+  const [state, dispatch] = useReducer(WishlistReducer, {wishlist:[]});
+  console.log("state", state);
+    // const [wishlist,setWishlist] = useState([])
+    
 
-    const addToWishlist = (product)=>{
+    /*const addToWishlist = (product)=>{
         const found = wishlist?.find((ele) => ele.id === product.id);
+        setIsWishlisted(found)
         if(found){
-            return setWishlist([...wishlist])
+            return  wishlist.splice(found,1);
+              // setWishlist([...wishlist])                      
         }else{
            return setWishlist([...wishlist,product])
-        }
-    }
+        }       
+    }*/
     
   return (
     <div>
-        <wishlistContext.Provider value={{wishlist,addToWishlist}}>
+        <wishlistContext.Provider value={{state,dispatch}}>
             {children}
         </wishlistContext.Provider>
     </div>
