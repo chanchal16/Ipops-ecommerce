@@ -1,8 +1,24 @@
 import React from 'react';
 import Sidebar from '../components/sidebar';
+import { useCart } from '../contexts/CartContext';
 import { products } from '../store/products';
+import { ItemExists } from '../store/ItemExists';
 
 export default function Products() {
+    const{state,dispatch} = useCart()
+    console.log('state',state)
+
+    const addToCart=(item)=>{
+        // const found = state.cart?.find((ele) => ele.id === item.id);
+        // console.log("found", found);
+        
+        if(!ItemExists(state.cart,item.id)){
+            item.qty = 1;
+            dispatch({type:'ADD_TO_CART',payload:item})
+        }
+        
+        console.log('qty',state)
+    }
   return (
     <div className="main-container">
         <Sidebar/>
@@ -10,7 +26,7 @@ export default function Products() {
             <div className='product-list'>
             {
             products.map(product=>(
-                <div class="card">
+                <div class="card" key={product.id}>
                     <div class="card-media">
                         <img class="vc-image" 
                         src={product.img} 
@@ -30,7 +46,16 @@ export default function Products() {
                                 </span> <span class="secondary">20% off</span></p>
                         </div>
                         <div class="action-btns">
-                            <button class="btn"><i class="fas fa-shopping-cart"></i> Add to cart</button>
+                            {ItemExists(state.cart,product.id) ?
+                            <button class="btn" >
+                                <i class="fas fa-shopping-cart"></i> Go to cart
+                            </button>
+                            
+                            : 
+                            <button class="btn" onClick={()=>addToCart(product)}>
+                                <i class="fas fa-shopping-cart"></i> Add to cart
+                            </button>
+                            }
                         </div>
                     </div>
                 </div>
