@@ -1,44 +1,52 @@
 import React from 'react'
+import { useCart } from '../contexts/CartContext'
 
 export default function Cart() {
+    const{state,dispatch} = useCart()
+   
+    
   return (
     <div className='cart-section'>
         <div className="cart-container">
             <div className="cart-items">
                 <div className="items-div">
                     <div className="cart-info">
-                        <h6 className="h6">My Cart(1)</h6>
+                        <h6 className="h6">My Cart({state.totalItems})</h6>
                         <span className="text-md">Deliver to:
-                            <input type="text" value="Aurangabad 431001" className="address" />
+                            <input type="text" value="Aurangabad 431001" className="address" onChange={()=>{}} />
                         </span>
                     </div>
-                    <div className="horizontal-card">
-                        <div className="card-media">
-                            <img className="hc-image"
-                            src="https://cdn.eyemyeye.com/shared/images/products/E20C4254/E20C4254-1-hd.jpg" 
-                            alt="specs" />                
-                        </div>
-                        <div className="content">
-                            <h3 className="card-title">Fastrack</h3>
-                            <p className="gray card-sub-title">Eyeglasses</p>
-                            <p className="gray card-sub-title"><strong> Rs.799 </strong> <span className="strike-text gray">Rs.999
-                            </span> <span className="secondary">20% off</span></p>
-                            <div className="btns">
-                                <a className="link-secondary btn-link">Save for later</a>
-                                <a className="link-secondary">Remove</a>
+                    {state.cart?.length>0 && state.cart?.map(item=>(
+                        <div className="horizontal-card">
+                            <div className="card-media">
+                                <img className="hc-image"
+                                src={item.img} 
+                                alt="specs" />                
                             </div>
-                            <div className="count-div">
-                                <button className="quantity-btns">-</button>
-                                <input type="text" value="1" className="quantity" />
-                                <button className="quantity-btns">+</button>
+                            <div className="content">
+                                <h3 className="card-title">{item.name}</h3>
+                                <p className="gray card-sub-title">Eyeglasses</p>
+                                <p className="gray card-sub-title"><strong> {item.price} </strong> <span className="strike-text gray">Rs.999
+                                </span></p>
+                                <div className="btns">
+                                    <a className="link-secondary btn-link">Save for later</a>
+                                    <a className="link-secondary" onClick={()=>dispatch({type:'REMOVE_FROM_CART',payload:item})}>Remove</a>
+                                </div>
+                                <div className="count-div">
+                                    <button className="quantity-btns" onClick={()=>dispatch({type:'DECREASE_QTY',payload:item})}>-</button>
+                                    <div className='quantity'>{item.qty} </div>
+                                    <button className="quantity-btns" onClick={()=>dispatch({type:'INCREASE_QTY',payload:item})}>+</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    ))}
+                    
                     <div className="cart-items-footer">
                         <button className="btn order">Place order</button>
                     </div>
                 </div>
             </div>
+            {/* price details */}
             <div className="total-price">
                 <div className="price-details">
                     <h6 className="h6">Price Details</h6>
@@ -60,7 +68,7 @@ export default function Cart() {
                     <div className="outer-div">
                         <div className="details">
                             <h1 className="text-md bold">Total amount </h1>
-                            <p className=" text-md bold">₹849</p>
+                            <p className=" text-md bold">{state.totalPrice}</p>
                         </div>
                     </div>
                     <div className="details-footer">
