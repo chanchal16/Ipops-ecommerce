@@ -16,6 +16,7 @@ export default function Cart() {
                             <input type="text" value="Aurangabad 431001" className="address" onChange={()=>{}} />
                         </span>
                     </div>
+                    <div className='card-container'>
                     {state.cart?.length>0 && state.cart?.map(item=>(
                         <div className="horizontal-card">
                             <div className="card-media">
@@ -40,7 +41,7 @@ export default function Cart() {
                             </div>
                         </div>
                     ))}
-                    
+                    </div>
                     <div className="cart-items-footer">
                         <button className="btn order">Place order</button>
                     </div>
