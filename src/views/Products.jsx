@@ -3,6 +3,7 @@ import Sidebar from '../components/sidebar';
 import { useCart } from '../contexts/CartContext';
 import { products } from '../store/products';
 import { ItemExists } from '../store/ItemExists';
+import { Link } from "react-router-dom";
 
 export default function Products() {
     const{state,dispatch} = useCart()
@@ -47,9 +48,11 @@ export default function Products() {
                         </div>
                         <div class="action-btns">
                             {ItemExists(state.cart,product.id) ?
-                            <button class="btn" >
-                                <i class="fas fa-shopping-cart"></i> Go to cart
-                            </button>
+                            <Link to='/cart'>
+                                <button class="btn" >
+                                    <i class="fas fa-shopping-cart"></i> Go to cart
+                                </button>
+                            </Link>
                             
                             : 
                             <button class="btn" onClick={()=>addToCart(product)}>

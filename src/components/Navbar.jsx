@@ -1,6 +1,9 @@
 import React from 'react'
+import { Link } from "react-router-dom";
+import { useCart } from '../contexts/CartContext';
 
 export default function Navbar() {
+    const{state} = useCart()
   return (
     <div>
         <header className="navbars">
@@ -21,9 +24,9 @@ export default function Navbar() {
                     </li>
                     <li className="list-items">
                         <div className='badge-icon'>
-                            <a href="./cart.html"><i className="fas fa-shopping-cart fa-lg"></i></a>
+                        <Link to='/cart'><i className="fas fa-shopping-cart fa-lg"></i></Link>
                             <div className='badge numbadge'>
-                            <small>1</small>
+                            <small>{state.totalItems}</small>
                             </div>
                         </div>
                     </li>
